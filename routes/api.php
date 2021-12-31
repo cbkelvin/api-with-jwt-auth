@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
+
+Route::group(['middleware' => ['auth:api']], function(){
+    Route::get('profile', [UserController::class, 'profile']);
+    Route::get('logout', [UserController::class, 'logout']);
+
+    Route::post('jointeam', [TeamController::class, 'jointeam']);
+    Route::get('totalTeams', [TeamController::class, 'totalTeams']);
+    Route::get('deleteTeam/{id}', [TeamController::class, 'deleteTeam']);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
