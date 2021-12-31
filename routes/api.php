@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('profile', [UserController::class, 'profile']);
     Route::get('logout', [UserController::class, 'logout']);
 
-    Route::post('jointeam', [TeamController::class, 'jointeam']);
+    Route::post('join-team', [TeamController::class, 'joinTeam']);
     Route::get('totalTeams', [TeamController::class, 'totalTeams']);
     Route::get('deleteTeam/{id}', [TeamController::class, 'deleteTeam']);
 });

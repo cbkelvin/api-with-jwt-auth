@@ -70,7 +70,12 @@ class UserController extends Controller
  }
  public function logout()
  {
+   auth()->logout();
 
+   return response()->json([
+     "status" => 1,
+     "message"=>"user logged out"
+   ]);
  }
 
 }
